@@ -10,11 +10,19 @@ pkg := hunspell-1.6.2-1 \
 out := _out
 cache := $(out)/cache
 pkg.cache := $(addsuffix -any.pkg.tar.xz,$(addprefix $(cache)/mingw-w64-x86_64-,$(pkg)))
+unpack := $(out)/unpack
+unpack.pkg := $(patsubst $(cache)/%.pkg.tar.xz, $(unpack)/%.unpack, $(pkg.cache))
 
+unpack: $(unpack.pkg)
 download: $(pkg.cache)
 
 $(out)/%.pkg.tar.xz:
 	$(pkg_download)
+
+$(unpack)/%.unpack: $(cache)/%.pkg.tar.xz
+	$(mkdir)
+	tar xfJ $< -C $(unpack) mingw64
+	touch $@
 
 define pkg_download
 $(mkdir)
