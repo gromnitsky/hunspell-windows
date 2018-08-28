@@ -34,3 +34,18 @@ done
 endef
 
 mkdir = @mkdir -p $(dir $@)
+
+
+
+dict-repo: $(cache)/.dictionaries
+
+$(cache)/.dictionaries:
+	$(mkdir)
+	cd $(cache) && git clone git://anongit.freedesktop.org/libreoffice/dictionaries
+	touch $@
+
+dict: $(unpack)/mingw64/share/hunspell/README.txt
+$(unpack)/mingw64/share/hunspell/README.txt: $(cache)/.dictionaries
+	$(mkdir)
+	./dict.sh $< $(dir $@)
+	echo hi > $@

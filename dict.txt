@@ -1,0 +1,68 @@
+# aff		aliases
+af_ZA
+an_ES
+ar		ar_AE ar_BH ar_DZ ar_EG ar_IQ ar_JO ar_KW ar_LB ar_LY ar_MA ar_OM ar_QA ar_SA ar_SY ar_TN ar_YE
+be_BY
+bg_BG
+bn_BD		bn_IN
+bo		bo_CN
+br_FR
+bs_BA
+ca		ca_ES
+cs_CZ
+da_DK
+de_AT_frami	de_AT
+de_CH_frami	de_CH
+# is this right?
+de_DE_frami	de_DE de_LI de_LU
+el_GR
+en_AU
+# should it belong to en_GB?
+en_CA		en_BZ en_IE en_IN en_JM en_MY en_NZ en_PH en_SG en_TT en_ZW
+en_GB
+en_US
+en_ZA
+es_ANY		es_AR es_BO es_CL es_CO es_CR es_DO es_EC es_ES es_GT es_HN es_MX es_NI es_PA es_PE es_PR es_PY es_SV es_US es_UY es_VE
+et_EE
+fr		fr_BE fr_CA fr_CH fr_FR fr_LU fr_MC
+gd_GB
+gl_ES
+# what is the locale name for Guarani?
+#gug
+gu_IN
+he_IL
+hi_IN
+hr_HR		hr_BA
+hu_HU
+id_ID
+is		is_IS
+it_IT		it_CH
+kmr_Latn	ku_TR
+lo_LA
+lt		lt_LT
+lv_LV
+ne_NP
+nl_NL		nl_BE
+nb_NO
+nn_NO
+oc_FR
+pl_PL
+pt_BR
+pt_PT
+ro_RO
+ru_RU
+si_LK
+sk_SK
+sl_SI
+sq_AL
+sr-Latn		sr_BA sr_CS sr_ME sr_RS
+# I've no idea if the Cyrillic script is still relevant
+#sr
+sv_FI
+sv_SE
+sw_TZ		sw_KE
+te_IN
+th_TH
+tr_TR
+uk_UA
+vi_VN
