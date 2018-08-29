@@ -13,6 +13,7 @@ pkg.cache := $(addsuffix -any.pkg.tar.xz,$(addprefix $(cache)/mingw-w64-x86_64-,
 unpack := $(out)/unpack
 unpack.pkg := $(patsubst $(cache)/%.pkg.tar.xz, $(unpack)/%.unpack, $(pkg.cache))
 
+all: zip
 unpack: $(unpack.pkg)
 download: $(pkg.cache)
 
@@ -105,7 +106,9 @@ endef
 
 
 
-zip := $(out)/hunspell.zip
+ver := h-$(subst hunspell-,,$(firstword $(pkg)))-d-$(dict.repo.ref)-v1
+zip := $(out)/hunspell-windows-$(ver).zip
+
 zip: $(zip)
 
 $(zip): $(dict.readme)
