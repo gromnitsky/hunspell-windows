@@ -51,9 +51,8 @@ $(cache)/.dictionaries.patch: $(cache)/.dictionaries
 	cd $(dict.repo) && patch -p1 < ../$(notdir $@).1
 	touch $@
 
-dict.readme := $(unpack)/hunspell/share/hunspell/README.txt
+dict.readme := $(unpack)/mingw64/share/hunspell/README.txt
 
-# main target
 dict: $(dict.readme)
 # disable built-in gmake rule
 %: %.sh
@@ -103,3 +102,11 @@ index d0cccb3..4258f85 100644
  PFX A Y 1
  PFX A   0     re         .
 endef
+
+
+
+zip := $(out)/hunspell.zip
+zip: $(zip)
+
+$(zip): $(dict.readme)
+	cd $(unpack)/mingw64 && zip -rq $(CURDIR)/$@ .
