@@ -37,15 +37,43 @@ mkdir = @mkdir -p $(dir $@)
 
 
 
-dict-repo: $(cache)/.dictionaries
+dict.repo := $(cache)/dictionaries
+dict.repo.ref := 9ec31e4
 
 $(cache)/.dictionaries:
 	$(mkdir)
-	cd $(cache) && git clone git://anongit.freedesktop.org/libreoffice/dictionaries
+	git clone git://anongit.freedesktop.org/libreoffice/dictionaries $(dict.repo)
+	cd $(dict.repo) && git checkout $(dict.repo.ref)
 	touch $@
 
-dict: $(unpack)/mingw64/share/hunspell/README.txt
-$(unpack)/mingw64/share/hunspell/README.txt: $(cache)/.dictionaries
-	$(mkdir)
-	./dict.sh $< $(dir $@)
-	echo hi > $@
+$(cache)/.dictionaries.patch: $(cache)/.dictionaries
+	$(file > $@.1,$(patch.1))
+	cd $(dict.repo) && patch -p1 < ../$(notdir $@).1
+	touch $@
+
+define patch.1 :=
+diff --git a/en/en_US.aff b/en/en_US.aff
+index d0cccb3..4258f85 100644
+--- a/en/en_US.aff
++++ b/en/en_US.aff
+@@ -14,7 +14,7 @@ ONLYINCOMPOUND c
+ COMPOUNDRULE 2
+ COMPOUNDRULE n*1t
+ COMPOUNDRULE n*mp
+-WORDCHARS 0123456789
++WORDCHARS 0123456789’
+
+ PFX A Y 1
+ PFX A   0     re         .
+endef
+
+dict.readme := $(unpack)/mingw64/share/hunspell/README.txt
+
+# main target
+dict: $(dict.readme)
+# disable built-in gmake rule
+%: %.sh
+
+$(dict.readme): $(cache)/.dictionaries.patch $(unpack.pkg)
+	./dict.sh $(dict.repo) $(dir $@)
+	@echo 'License: https://cgit.freedesktop.org/libreoffice/dictionaries/tree/' > $@
