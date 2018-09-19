@@ -5,7 +5,10 @@ pkg.repos := http://repo.msys2.org/mingw/x86_64 \
 pkg := hunspell-1.6.2-1 \
 	readline-7.0.005-1 \
 	gcc-libs-7.3.0-2 \
-	termcap-1.3.1-3
+	termcap-1.3.1-3 \
+	gettext-0.19.8.1-3 \
+	libwinpthread-git-6.0.0.5134.2416de71-1 \
+	libiconv-1.15-2
 
 out := _out
 cache := $(out)/cache
@@ -106,7 +109,7 @@ endef
 
 
 
-ver := h-$(subst hunspell-,,$(firstword $(pkg)))-d-$(dict.repo.ref)-v1
+ver := h-$(subst hunspell-,,$(firstword $(pkg)))-d-$(dict.repo.ref)-v2
 zip := $(out)/hunspell-windows-$(ver).zip
 
 zip: $(zip)
