@@ -26,19 +26,13 @@ $ cd hunspell-windows
 $ make
 ~~~
 
-The resulting .zip (~74MB) should be in `_out/` dir.
+The resulting .zip (~100MB) should be in `_out/` dir.
 
-## Emacs
+## Result artifacts
 
-http://gromnitsky.blogspot.com/2016/09/emacs-251-hunspell.html
-
-## How to update Makefile
-
-For new versions of hunspell/dicts, edit the vars:
-
-* `pkg` (pacman packages for hunspell & its deps)
-* `dict.repo.ref` (libreoffice git ref)
+Once you have the zip you can extract it some where (eg C:/Softwares/emacs-bin)
+then adding bin folder to the PATH
 
 ## License
 
-MIT (for the files in this repo only, not for the bundle it makes)
+MIT
