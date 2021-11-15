@@ -43,9 +43,8 @@ $(out)/%.pkg.tar.zst:
 
 $(unpack)/%.unpack: $(cache)/%.pkg.tar.zst
 	$(mkdir)
-	tar -I zstd -xvf $< -C $(unpack) mingw64
+	tar -axf $< -C $(unpack) mingw64
 	touch $@
-
 
 define pkg_download
 $(mkdir)
