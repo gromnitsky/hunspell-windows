@@ -1,11 +1,16 @@
-# hunspell windows
+# Emacs binaries management for Windows
 
-Create an x64 hunspell windows binary bundle with all the dicts from
-the libreoffice repo.
+The project originates from gromnitsky's
+[hunspell-windows](https://github.com/gromnitsky/hunspell-windows). Later I
+found it is perfect for maintaining x64 binaries for my Emacs usage on Windows.
 
-The hunspell binaries are downloaded from the MSYS2 mirrors; the
-libreoffice dicts are renamed to match `language_territory` locale
-names, like `uk_UA` or `en_GB`.
+Right now it includes:
+- hunspell (and dictionaries libreoffice repo)
+- riggrep;
+- SQLite;
+
+The binaries are downloaded from the MSYS2 mirrors; the libreoffice dicts are
+renamed to match `language_territory` locale names, like `uk_UA` or `en_GB`.
 
 ## Usage
 
