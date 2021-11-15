@@ -14,7 +14,7 @@ ver.ripgrep =  $(shell pacman -Q mingw-w64-x86_64-ripgrep | cut -d' ' -f 2)
 #sqilite3
 ver.tcl     =  $(shell pacman -Q mingw-w64-x86_64-tcl     | cut -d' ' -f 2)
 ver.zlib    =  $(shell pacman -Q mingw-w64-x86_64-zlib    | cut -d' ' -f 2)
-ver.sqlite  =  $(shell pacman -Q mingw-w64-x86_64-sqlite3 | cut -d' ' -f 2)
+ver.sqlite3 =  $(shell pacman -Q mingw-w64-x86_64-sqlite3 | cut -d' ' -f 2)
 
 pkg := hunspell-$(ver.hunspell) \
 	readline-$(ver.readline) \
@@ -26,7 +26,7 @@ pkg := hunspell-$(ver.hunspell) \
 	ripgrep-$(ver.ripgrep) \
 	tcl-$(ver.tcl) \
 	zlib-$(ver.zlib) \
-	sqlite-$(ver.sqlite)
+	sqlite3-$(ver.sqlite3)
 
 out := _out
 cache := $(out)/cache
