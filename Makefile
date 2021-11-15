@@ -1,31 +1,49 @@
 pkg.repos := http://repo.msys2.org/mingw/x86_64 \
 	https://downloads.sourceforge.net/project/msys2/REPOS/MINGW/x86_64 \
 	http://www2.futureware.at/~nickoe/msys2-mirror/mingw/x86_64
+#hunspell
+ver.hunspell = $(shell pacman -Q mingw-w64-x86_64-hunspell | cut -d' ' -f 2)
+ver.readline = $(shell pacman -Q mingw-w64-x86_64-readline | cut -d' ' -f 2)
+ver.gcc-libs = $(shell pacman -Q mingw-w64-x86_64-gcc-libs | cut -d' ' -f 2)
+ver.termcap = $(shell pacman -Q mingw-w64-x86_64-termcap | cut -d' ' -f 2)
+ver.gettext = $(shell pacman -Q mingw-w64-x86_64-gettext | cut -d' ' -f 2)
+ver.libwinpthread-git = $(shell pacman -Q mingw-w64-x86_64-libwinpthread-git | cut -d' ' -f 2)
+ver.libiconv = $(shell pacman -Q mingw-w64-x86_64-libiconv | cut -d' ' -f 2)
+#ripgrep
+ver.ripgrep =  $(shell pacman -Q mingw-w64-x86_64-ripgrep | cut -d' ' -f 2)
+#sqilite3
+ver.tcl     =  $(shell pacman -Q mingw-w64-x86_64-tcl     | cut -d' ' -f 2)
+ver.zlib    =  $(shell pacman -Q mingw-w64-x86_64-zlib    | cut -d' ' -f 2)
+ver.sqlite3 =  $(shell pacman -Q mingw-w64-x86_64-sqlite3 | cut -d' ' -f 2)
 
-pkg := hunspell-1.6.2-1 \
-	readline-7.0.005-1 \
-	gcc-libs-7.3.0-2 \
-	termcap-1.3.1-3 \
-	gettext-0.19.8.1-3 \
-	libwinpthread-git-6.0.0.5134.2416de71-1 \
-	libiconv-1.15-2
+pkg := hunspell-$(ver.hunspell) \
+	readline-$(ver.readline) \
+	gcc-libs-$(ver.gcc-libs) \
+	termcap-$(ver.termcap) \
+	gettext-$(ver.gettext) \
+	libwinpthread-git-$(ver.libwinpthread-git) \
+	libiconv-$(ver.libiconv) \
+	ripgrep-$(ver.ripgrep) \
+	tcl-$(ver.tcl) \
+	zlib-$(ver.zlib) \
+	sqlite3-$(ver.sqlite3)
 
 out := _out
 cache := $(out)/cache
-pkg.cache := $(addsuffix -any.pkg.tar.xz,$(addprefix $(cache)/mingw-w64-x86_64-,$(pkg)))
+pkg.cache := $(addsuffix -any.pkg.tar.zst,$(addprefix $(cache)/mingw-w64-x86_64-,$(pkg)))
 unpack := $(out)/unpack
-unpack.pkg := $(patsubst $(cache)/%.pkg.tar.xz, $(unpack)/%.unpack, $(pkg.cache))
+unpack.pkg := $(patsubst $(cache)/%.pkg.tar.zst, $(unpack)/%.unpack, $(pkg.cache))
 
 all: zip
 unpack: $(unpack.pkg)
 download: $(pkg.cache)
 
-$(out)/%.pkg.tar.xz:
+$(out)/%.pkg.tar.zst:
 	$(pkg_download)
 
-$(unpack)/%.unpack: $(cache)/%.pkg.tar.xz
+$(unpack)/%.unpack: $(cache)/%.pkg.tar.zst
 	$(mkdir)
-	tar xfJ $< -C $(unpack) mingw64
+	tar -axf $< -C $(unpack) mingw64
 	touch $@
 
 define pkg_download
@@ -38,8 +56,6 @@ done
 endef
 
 mkdir = @mkdir -p $(dir $@)
-
-
 
 dict.repo := $(cache)/dictionaries
 dict.repo.ref := 9ec31e4
@@ -107,10 +123,9 @@ index d0cccb3..4258f85 100644
  PFX A   0     re         .
 endef
 
-
 
-ver := h-$(subst hunspell-,,$(firstword $(pkg)))-d-$(dict.repo.ref)-v2
-zip := $(out)/hunspell-windows-$(ver).zip
+# ver := $(subst hunspell-,,$(firstword $(pkg)))-d-$(dict.repo.ref)-v2
+zip := $(out)/dotemacs-msbin.zip
 
 zip: $(zip)
 
