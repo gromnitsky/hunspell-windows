@@ -15,8 +15,8 @@ jobs:
           msystem: MINGW64
           update: true
           install: git zip patch make mingw-w64-x86_64-toolchain unzip zstd mingw-w64-x86_64-hunspell mingw-w64-x86_64-hunspell-en mingw-w64-x86_64-ripgrep
-    - name: CI build
-      run: |
-        make
+      - name: CI-build
+        run: |
+          make
         
 
