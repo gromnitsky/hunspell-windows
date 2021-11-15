@@ -14,9 +14,10 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: git zip patch make mingw-w64-x86_64-toolchain unzip zstd mingw-w64-x86_64-hunspell mingw-w64-x86_64-hunspell-en mingw-w64-x86_64-ripgrep
+          install: git zip patch make mingw-w64-x86_64-toolchain unzip zstd
       - name: CI-build
         run: |
+          pacman -S --noconfirm mingw-w64-x86_64-hunspell mingw-w64-x86_64-hunspell-en
+          pacman -S --noconfirm mingw-w64-x86_64-ripgrep  mingw-w64-x86_64-sqlite3
           make
         
-
