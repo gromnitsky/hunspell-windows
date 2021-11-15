@@ -1,6 +1,9 @@
 name: Emacs binaries build
 
-on: [push, pull_request]
+on:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build:
@@ -20,16 +23,16 @@ jobs:
           pacman -S --noconfirm mingw-w64-x86_64-hunspell mingw-w64-x86_64-hunspell-en
           pacman -S --noconfirm mingw-w64-x86_64-ripgrep  mingw-w64-x86_64-sqlite3
           make
-      # - name: Create Release
-      #   id: create_release
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: upload windows artifacts
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }} # pull
-      #     asset_path: _out/dotemacs-msbin.zip
-      #     asset_name: dotemacs-msbin.zip
-      #     asset_content_type: application/zip
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      - name: upload windows artifacts
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # pull
+          asset_path: _out/dotemacs-msbin.zip
+          asset_name: dotemacs-msbin.zip
+          asset_content_type: application/zip
