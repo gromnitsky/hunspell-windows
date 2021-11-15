@@ -1,9 +1,9 @@
 name: Emacs binaries build
 
-on:
-  push:
-    tags:
-      - 'v*'
+on: [push]
+  # push:
+    # tags:
+    #   - 'v*'
 
 jobs:
   build:
@@ -27,11 +27,17 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
       - name: upload windows artifacts
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # pull
           asset_path: _out/dotemacs-msbin.zip
           asset_name: dotemacs-msbin.zip
