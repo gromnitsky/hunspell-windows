@@ -22,6 +22,8 @@ jobs:
         run: |
           pacman -S --noconfirm mingw-w64-x86_64-hunspell mingw-w64-x86_64-hunspell-en
           pacman -S --noconfirm mingw-w64-x86_64-ripgrep  mingw-w64-x86_64-sqlite3
+          pacman -S --noconfirm mingw-w64-x86_64-curl-winssl
+          pacman -S --noconfirm mingw-w64-x86_64-ninja          
           make
       - name: Create Release
         id: create_release

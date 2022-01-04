@@ -15,6 +15,52 @@ ver.ripgrep =  $(shell pacman -Q mingw-w64-x86_64-ripgrep | cut -d' ' -f 2)
 ver.tcl     =  $(shell pacman -Q mingw-w64-x86_64-tcl     | cut -d' ' -f 2)
 ver.zlib    =  $(shell pacman -Q mingw-w64-x86_64-zlib    | cut -d' ' -f 2)
 ver.sqlite3 =  $(shell pacman -Q mingw-w64-x86_64-sqlite3 | cut -d' ' -f 2)
+ver.gmp	    =  $(shell pacman -Q mingw-w64-x86_64-gmp     | cut -d' ' -f 2)
+ver.mpc	    =  $(shell pacman -Q mingw-w64-x86_64-mpc	  | cut -d' ' -f 2)
+ver.mpfr    =  $(shell pacman -Q mingw-w64-x86_64-mpfr	  | cut -d' ' -f 2)
+# termcap, winpthread-git, readline, gcclibs
+
+#curl for org-download, curl-winssl has less dependencies
+# mingw-w64-x86_64-gcc-libs
+# mingw-w64-x86_64-gmp
+# mingw-w64-x86_64-mpc
+# mingw-w64-x86_64-mpfr
+# mingw-w64-x86_64-libwinpthread-git
+# mingw-w64-x86_64-gettext
+# mingw-w64-x86_64-libiconv
+# mingw-w64-x86_64-zlib
+
+ver.curl-winssl      = $(shell pacman -Q mingw-w64-x86_64-curl-winssl	 | cut -d' ' -f 2)
+ver.c-ares           = $(shell pacman -Q mingw-w64-x86_64-c-ares	 | cut -d' ' -f 2)
+ver.brotli           = $(shell pacman -Q mingw-w64-x86_64-brotli	 | cut -d' ' -f 2)
+ver.libidn2          = $(shell pacman -Q mingw-w64-x86_64-libidn2	 | cut -d' ' -f 2)
+ver.expat            = $(shell pacman -Q mingw-w64-x86_64-expat		 | cut -d' ' -f 2)
+ver.libunistring     = $(shell pacman -Q mingw-w64-x86_64-libunistring	 | cut -d' ' -f 2)
+ver.libpsl           = $(shell pacman -Q mingw-w64-x86_64-libpsl	 | cut -d' ' -f 2)
+ver.zstd             = $(shell pacman -Q mingw-w64-x86_64-zstd		 | cut -d' ' -f 2)
+ver.libssh2-wincng   = $(shell pacman -Q mingw-w64-x86_64-libssh2-wincng | cut -d' ' -f 2)
+
+# ver.curl            =  $(shell pacman -Q mingw-w64-x86_64-curl	    | cut -d' ' -f 2)
+# ver.c-ares	      =  $(shell pacman -Q mingw-w64-x86_64-c-ares	    | cut -d' ' -f 2)
+# ver.brotli	      =  $(shell pacman -Q mingw-w64-x86_64-brotli	    | cut -d' ' -f 2)
+# ver.libidn2	      =  $(shell pacman -Q mingw-w64-x86_64-libidn2	    | cut -d' ' -f 2)
+# ver.expat	      =  $(shell pacman -Q mingw-w64-x86_64-expat	    | cut -d' ' -f 2)
+# ver.libunistring    =  $(shell pacman -Q mingw-w64-x86_64-libunistring    | cut -d' ' -f 2)
+# ver.libpsl	      =  $(shell pacman -Q mingw-w64-x86_64-libpsl	    | cut -d' ' -f 2)
+# ver.zstd	      =  $(shell pacman -Q mingw-w64-x86_64-zstd	    | cut -d' ' -f 2)
+# ver.ca-certificates =  $(shell pacman -Q mingw-w64-x86_64-ca-certificates | cut -d' ' -f 2)
+# ver.p11-kit	      =  $(shell pacman -Q mingw-w64-x86_64-p11-kit         | cut -d' ' -f 2)
+# ver.libtasn1	      =  $(shell pacman -Q mingw-w64-x86_64-libtasn1	    | cut -d' ' -f 2)
+# ver.libffi	      =  $(shell pacman -Q mingw-w64-x86_64-libffi	    | cut -d' ' -f 2)
+# ver.libssh2	      =  $(shell pacman -Q mingw-w64-x86_64-libssh2	    | cut -d' ' -f 2)
+# ver.openssl	      =  $(shell pacman -Q mingw-w64-x86_64-openssl	    | cut -d' ' -f 2)
+# ver.nghttp2	      =  $(shell pacman -Q mingw-w64-x86_64-nghttp2	    | cut -d' ' -f 2)
+# ver.jansson	      =  $(shell pacman -Q mingw-w64-x86_64-jansson	    | cut -d' ' -f 2)
+# ver.jemalloc	      =  $(shell pacman -Q mingw-w64-x86_64-jemalloc	    | cut -d' ' -f 2)
+# ver.libxml2	      =  $(shell pacman -Q mingw-w64-x86_64-libxml2	    | cut -d' ' -f 2)
+# ver.xz	      =  $(shell pacman -Q mingw-w64-x86_64-xz		    | cut -d' ' -f 2)
+
+ver.ninja = $(shell pacman -Q mingw-w64-x86_64-ninja | cut -d' ' -f 2)
 
 pkg := hunspell-$(ver.hunspell) \
 	readline-$(ver.readline) \
@@ -26,7 +72,17 @@ pkg := hunspell-$(ver.hunspell) \
 	ripgrep-$(ver.ripgrep) \
 	tcl-$(ver.tcl) \
 	zlib-$(ver.zlib) \
-	sqlite3-$(ver.sqlite3)
+	sqlite3-$(ver.sqlite3) \
+	curl-winssl-$(ver.curl-winssl) \
+	c-ares-$(ver.c-ares) \
+	brotli-$(ver.brotli) \
+	libidn2-$(ver.libidn2) \
+	expat-$(ver.expat) \
+	libunistring-$(ver.libunistring) \
+	libpsl-$(ver.libpsl) \
+	zstd-$(ver.zstd) \
+	libssh2-wincng-$(ver.libssh2-wincng) \
+        ninja-$(ver.ninja)
 
 out := _out
 cache := $(out)/cache
