@@ -1,4 +1,4 @@
-# Emacs binaries management for Windows
+# Emacs binaries management for Windows v0.1.2
 
 The project originates from gromnitsky's
 [hunspell-windows](https://github.com/gromnitsky/hunspell-windows). Later I
@@ -8,6 +8,8 @@ Right now it includes:
 - hunspell (and dictionaries libreoffice repo)
 - riggrep;
 - SQLite;
+- ninja-build;
+- curl;
 
 The binaries are downloaded from the MSYS2 mirrors; the libreoffice dicts are
 renamed to match `language_territory` locale names, like `uk_UA` or `en_GB`.
