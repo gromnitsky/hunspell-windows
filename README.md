@@ -22,13 +22,13 @@ The easiest way to run it under Windows is to download MSYS2, run
 `msys2.exe` &:
 
 ~~~
-$ pacman -S git patch zip make
+$ pacman -S git patch curl base-devel
 $ git clone ...
-$ cd hunspell-windows
-$ make
+$ cd dotemacs-msbin
+$ makepkg-mingw
 ~~~
 
-The resulting .zip (~100MB) should be in `_out/` dir.
+The resulting .tar.zst (~100MB) should be in current directory
 
 ## Result artifacts
 

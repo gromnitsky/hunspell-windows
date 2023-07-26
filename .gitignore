@@ -1,0 +1,6 @@
+# make files
+src/
+pkg/
+
+# artifacts
+*.zst

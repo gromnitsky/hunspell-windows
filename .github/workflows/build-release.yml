@@ -17,14 +17,17 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: git zip patch tar bsdtar make mingw-w64-x86_64-toolchain unzip zstd
+          install: git zip patch tar bsdtar make curl unzip zstd
       - name: CI-build
         run: |
-          pacman -S --noconfirm mingw-w64-x86_64-hunspell mingw-w64-x86_64-hunspell-en
-          pacman -S --noconfirm mingw-w64-x86_64-ripgrep  mingw-w64-x86_64-sqlite3
-          pacman -S --noconfirm mingw-w64-x86_64-curl-winssl
-          pacman -S --noconfirm mingw-w64-x86_64-ninja          
-          make
+          pacman -S --noconfirm base-devel pacman-contrib
+          pacman -S --noconfirm mingw-w64-x86_64-toolchain
+          pacman -S --noconfirm mingw-w64-x86_64-hunspell 
+          pacman -S --noconfirm mingw-w64-x86_64-ripgrep
+          pacman -S --noconfirm mingw-w64-x86_64-curl
+          pacman -S --noconfirm mingw-w64-x86_64-ninja
+          pacman -S --noconfirm mingw-w64-x86_64-sqlite3
+          makepkg-mingw -f -s
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -41,6 +44,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # pull
-          asset_path: _out/dotemacs-msbin.zip
-          asset_name: dotemacs-msbin.zip
-          asset_content_type: application/zip
+          asset_path: dotemacs-bin-0.1.2-2-any.pkg.tar.zst
+          asset_name: dotemacs-bin-0.1.2-2-any.pkg.tar.zst
+          asset_content_type: application/x-tar
